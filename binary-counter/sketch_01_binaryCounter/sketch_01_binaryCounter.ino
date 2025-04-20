@@ -2,8 +2,9 @@ int led1 = 2;
 int led2 = 3;
 int led4 = 4;
 int led8 = 5;
+int led16 = 6;
 int count = 0;
-int countTo = 15;
+int countTo = 31;
 int d = 3000;
 
 void setup() {
@@ -11,6 +12,7 @@ pinMode(led1, OUTPUT);
 pinMode(led2, OUTPUT);
 pinMode(led4, OUTPUT);
 pinMode(led8, OUTPUT);
+pinMode(led16,OUTPUT);
 }
 
 void loop() {
@@ -23,6 +25,10 @@ void loop() {
 }
 
 void binaryDisplay(int num){
+  if(num >= 16){
+    digitalWrite(led16,HIGH);
+    num = num - 16;
+  }
   if(num >= 8){
     digitalWrite(led8,HIGH);
     num = num - 8;
@@ -43,6 +49,7 @@ void binaryDisplay(int num){
 
 void ledsLow(){
   delay(d);
+  digitalWrite(led16,LOW);
   digitalWrite(led8,LOW);
   digitalWrite(led4,LOW);
   digitalWrite(led2,LOW);
